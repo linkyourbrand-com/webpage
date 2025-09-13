@@ -2,13 +2,6 @@
 A webapp design to scale business events, stragegics for budgeting. On this site you can create your account and start showcasing your brand + if you need to handle and event you can create a digital flyer at your desires where your attendees can sign up and be ready to know whats next.
 That's an important detail. Let's make sure the goal is clear and then adapt the suggestions for your README file.
 
-### Completing the Goal Statement
-
-Based on our conversation, here is a clear and complete goal for your web app project:
-
-**Goal:** To help brands and individuals create a professional, all-in-one profile page that serves as a central hub for all their social media links, content, and local events. This web app will allow users to easily manage their digital presence while providing a community-driven feed to discover and connect with local events.
-
-
 ### Features
 
 This full-stack web application is built to provide users with a streamlined way to manage their online presence. Our goal is to create a dynamic, all-in-one platform for brands and individuals. The application includes the following key features:
