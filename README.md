@@ -19,5 +19,4 @@ This full-stack web application is built to provide users with a streamlined way
 * **Frontend:** React
 * **Backend:** Node.js
 * **Database:** MongoDB
-* **Development & Project Management:** GitHub Projects
 
