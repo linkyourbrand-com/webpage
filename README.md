@@ -21,4 +21,3 @@ This full-stack web application is built to provide users with a streamlined way
 * **Database:** MongoDB
 * **Development & Project Management:** GitHub Projects
 
-This README provides a professional overview of your project, highlighting the key features and the technology used. It's a great way to show that you've thought through the entire development process.
