@@ -99,3 +99,49 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+/* Simple navbar with grey rounded buttons */
+.navbar {
+  display: flex;
+  gap: 12px; /* space between buttons */
+  align-items:center;
+  padding: 12px 370px;
+}
+
+.nav-button {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6; /* light grey */
+  color: #333;
+  border-radius: 999px; /* pill */
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+
+.nav-button:hover {
+  background-color: #dcdcdc;
+}
+/* NavBar component styles */
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6;
+  color: #333;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+.hero {
+  text-align: center;
+}
+.lead {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
