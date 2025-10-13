@@ -1,4 +1,14 @@
 body{
-  background-color: blue;
+  background-color: #113c60;
   color: silver;
+}
+
+.main-content{
+  background-color: #05243c;
+  font-family: fantasy;
+  justify-content: center;
+}
+#section-head{
+  
+
 }
