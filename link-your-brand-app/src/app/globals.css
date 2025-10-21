@@ -1,0 +1,147 @@
+/* Positioning Wrapper (Targets the div in page.tsx) */
+.top-right-position-wrapper {
+  /* CRITICAL: Fixes the element relative to the browser window (viewport) */
+  position: fixed;
+
+  /* Positions the element from the top edge */
+  top: 20px;
+
+  /* Positions the element from the right edge */
+  right: 20px;
+
+  /* Ensures it sits above all other content on the page */
+  z-index: 2000;
+}
+
+/* --- CSS VARIABLES FOR EASY CHANGES --- */
+:root {
+  --dropdown-bg-color: #f3f3f3;
+  /* Your requested Grey background */
+  --font-family-base: 'Times New Roman', Times, serif;
+  /* Your requested font */
+  --primary-color: #007bff;
+  /* Just a placeholder for link color */
+}
+
+/* 1. Main Container (Applies Font and Positioning) */
+.profile-button-container {
+  /* This is critical for positioning the dropdown relative to the button */
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-family-base);
+  /* Apply Time New Roman font */
+}
+
+/* 2. Toggle Button and Image */
+.profile-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  /* Helps align the image and any text you might add */
+  align-items: center;
+}
+
+.profile-toggle img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* Makes the image circular */
+  object-fit: cover;
+  border: 2px solid #ccc;
+  /* Optional: a subtle border for definition */
+}
+
+/* 3. The Dropdown Menu Body (The grey, rounded box) */
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  /* Place it slightly below the button */
+  right: 0;
+  /* Align it to the right of the button */
+  min-width: 150px;
+
+  /* Apply your requested styles */
+  background-color: var(--dropdown-bg-color);
+  /* Grey Background */
+  border-radius: 10px;
+  /* Rounded Dropdown Body */
+
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 8px 0;
+  /* Vertical padding inside the menu */
+}
+
+/* 4. Individual Dropdown Items */
+.dropdown-item {
+  display: block;
+  /* Makes the whole area clickable */
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background-color: #e0e0e0;
+  /* Slightly darker grey on hover */
+}
+
+/* 5. Login/Signup Link (When logged out) */
+.login-signup-link {
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Simple navbar with grey rounded buttons */
+.navbar {
+  display: flex;
+  gap: 12px; /* space between buttons */
+  align-items:center;
+  padding: 12px 370px;
+}
+
+.nav-button {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6; /* light grey */
+  color: #333;
+  border-radius: 999px; /* pill */
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+
+.nav-button:hover {
+  background-color: #dcdcdc;
+}
+/* NavBar component styles */
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6;
+  color: #333;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+.hero {
+  text-align: center;
+}
+.lead {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
