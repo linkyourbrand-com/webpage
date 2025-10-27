@@ -1,35 +1,27 @@
 'use client';
-import Link from 'next/link';
-import { useState } from "react";
+import React, { useState } from 'react';
 
 interface ProfileButtonsProps {
-    isLoggedIn: boolean;
+    username?: string // optional string
+    loggedIn: boolean // must be a boolean
+    imageUrl?: string // optional string
 }
-export default function ProfileButton({isLoggedIn}: ProfileButtonsProps) {
-  //Open and close dropdown menu logic
-  const [isOpen, setIsOpen] = useState(false);
-  //Toggle dropdown menu
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  return (
-    <div className="profile-button-container">
-      {isLoggedIn ? (
-        <>
-    <button className="profile-toggle" onClick={toggleDropdown}>
-    <img src="/profile-image.png" alt="Profile" />
-    </button>
-
-    {isOpen && (
-      <div className = "dropdown-menu">
-      <Link href = "/profile" className = "dropdown-item" > Profile</Link>
-      <Link href="/settings" className="dropdown-item">Settings</Link>
-      <Link href="/logout" className="dropdown-item">Logout</Link>
-            </div>)}
-    </>
-    ):(
-      <Link href="/login-signup" className="login-signup-link">
-        Login / Signup</Link>
-    )}
-    </div>
-  );
+function ProfileButton({ username, loggedIn, imageUrl }: ProfileButtonsProps) {
+    const [open, setOpen] = useState(false)
+    // 🔁 toggles the open/closed state
+    const toggleDropdown = () => setOpen(!open)
+    return (
+        <div>
+            <button onClick={toggleDropdown}>Menu</button>
+            <img src={imageUrl || 'profile image.png'} alt="Profile"
+            width={50}
+            height={50}/>
+            {loggedIn ? (
+            <button>{username}</button>
+            ) : (
+            <button>Login</button>
+            )}
+        </div>
+    )
 }
+export default ProfileButton;
