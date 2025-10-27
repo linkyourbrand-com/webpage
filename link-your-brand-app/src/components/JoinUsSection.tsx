@@ -8,10 +8,13 @@ export default function JoinUsSection(){
             <h3 className='main-head'>Join Us</h3>
             <p className='main-section'>Are you an innovator?<br/>
                 Do you have what it takes?
+                <br/>
             </p>
-            <button className='main-section'>
-                <a href="#">Apply</a>
-            </button>
+            <div className='main-section'>
+                <button className='btn btn-primary' type='button' id='apply'>
+                    Apply?
+                </button>
+            </div>
         </div>
     );
 }
