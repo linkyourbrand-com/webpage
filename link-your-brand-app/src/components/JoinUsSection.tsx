@@ -5,13 +5,16 @@ export default function JoinUsSection(){
 
     return(
         <div>
-            <h3 id="section-head">Join Us</h3>
-            <p>Are you an innovator?<br/>
+            <h3 className='main-head'>Join Us</h3>
+            <p className='main-section'>Are you an innovator?<br/>
                 Do you have what it takes?
+                <br/>
             </p>
-            <button>
-                <link href="#">Apply</link>
-            </button>
+            <div className='main-section'>
+                <button className='btn btn-primary' type='button' id='apply'>
+                    Apply?
+                </button>
+            </div>
         </div>
     );
 }

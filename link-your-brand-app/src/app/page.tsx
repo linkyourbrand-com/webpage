@@ -1,18 +1,21 @@
-import ProfileButton from '@/components/ProfileButton';
+/*import ProfileButton from '@/components/ProfileButton';
 import AboutUsSection from '@/components/AboutUsSection';
 import OurMissionSection from '@/components/OurMissionSection';
+import JoinUsSection from '@/components/JoinUsSection';
 const page = () => {
     return(
     <div>
         <ProfileButton username='james' loggedIn></ProfileButton>
-        <div className="main-content">
+        <div className="center continer-fluid">
             <AboutUsSection></AboutUsSection>
             <hr/>
             <OurMissionSection></OurMissionSection>
+            <hr/>
+            <JoinUsSection></JoinUsSection>
         </div>
     </div>); 
 }
-export default page;
+export default page;*/
 "use client";
 import ProfileButton from '../components/ProfileButton';
 import NavBar from '../components/NavBar';
@@ -24,7 +27,7 @@ export default function HomePage() {
   return (
     <main>
       <div className="top-right-position-wrapper"> 
-        <ProfileButton isLoggedIn={userStatus} />
+        <ProfileButton loggedIn={userStatus} />
       </div>
       <NavBar />
 

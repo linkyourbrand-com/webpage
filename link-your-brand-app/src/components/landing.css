@@ -1,0 +1,51 @@
+body{
+  background-color: #113c60;
+  color: silver;
+  padding: 30px;
+}
+
+.center{
+  background-color: #05243c;
+  border:#05243c;
+  border-radius: 5%;
+}
+.main-section{
+  padding-top: 80px;
+  padding-bottom: 75px;
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  justify-content: center;
+  text-align: center;
+}
+
+.main-head{
+  padding-top: 150px;
+  display:flex;
+  justify-content: center;
+  font-size: 40px;
+}
+
+/*.carousel-item{
+  height: 850px;
+  width: 1250px;
+}*/
+
+#apply{
+  display:block;
+  margin: 0 auto;
+}
+
+/*.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}*/
+
+#carousel-main{
+  height: 500px;
+  border-style: double;
+  border-color: aqua;
+  border: 20px
+}
