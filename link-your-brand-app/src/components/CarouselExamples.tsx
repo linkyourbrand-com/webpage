@@ -33,4 +33,5 @@ export default function JoinUsSection(){
             </button>
         </div>
     );
+    
 }
