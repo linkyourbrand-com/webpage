@@ -3,9 +3,9 @@ import React from 'react';
 
 export default function OurMissionSection(){
     return(
-        <div>
-            <h3 id="section-head">Our Mission</h3>
-            <p>Organizing and hosting an event is difficult, time consuming, and frustating.<br/>
+        <div id="mission">
+            <h3 className='main-head'>Our Mission</h3>
+            <p className='main-section'>Organizing and hosting an event is difficult, time consuming, and frustating.<br/>
                 Those in charge already have a lot on their plates, but what is there anything that can be simplified?<br/>
                 Of course there is, setting up or paying developer to setup a landing page can be expensive and technically challeging.<br/>
                 However, our goal at Link Your Brand is to simply the task of creating a landing page for event organizers.<br/>

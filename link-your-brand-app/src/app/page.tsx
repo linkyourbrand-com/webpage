@@ -1,8 +1,27 @@
+/*import ProfileButton from '@/components/ProfileButton';
+import AboutUsSection from '@/components/AboutUsSection';
+import OurMissionSection from '@/components/OurMissionSection';
+import JoinUsSection from '@/components/JoinUsSection';
+const page = () => {
+    return(
+    <div>
+        <ProfileButton username='james' loggedIn></ProfileButton>
+        <div className="center continer-fluid">
+            <AboutUsSection></AboutUsSection>
+            <hr/>
+            <OurMissionSection></OurMissionSection>
+            <hr/>
+            <JoinUsSection></JoinUsSection>
+        </div>
+    </div>); 
+}
+export default page;*/
 "use client";
 import ProfileButton from '../components/ProfileButton';
 import AboutUsSection from '@/components/AboutUsSection';
 import OurMissionSection from '@/components/OurMissionSection';
 import JoinUsSection from '@/components/JoinUsSection';
+import CarouselExamples from '@/components/CarouselExamples';
 import NavBar from '../components/NavBar';
 import './globals.css';
 
@@ -15,21 +34,19 @@ export default function HomePage() {
         <ProfileButton loggedIn={userStatus} />
       </div>
       <NavBar />
-      <AboutUsSection />
-      <OurMissionSection />
+      <div className='center'>
+        <CarouselExamples />
+        <hr />
+        <AboutUsSection />
+        <hr />
+        <OurMissionSection />
+        <hr />
+        <JoinUsSection />
+      </div>
 
 
 
       <section className="hero">
-        <h1>Welcome to LinkyourBrand !
-        <br /> <br />Hosting your brand events has never been easier</h1>
-        <p className="lead">
-          LinkyourBrand is a web app designed to help businesses plan, budget and scale events.<br />
-          <br />
-          Create an account to showcase your brand, build digital flyers for events, and
-          let attendees sign up directly. <br /> <br />When you create an event, attendees can register
-          and receive instant updates so they always know what's next.
-        </p>
 
         <div className="cta-row">
           <a href="/signup" className="btn primary">Create account</a>
