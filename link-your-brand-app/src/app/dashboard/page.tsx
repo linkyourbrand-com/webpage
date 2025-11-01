@@ -49,7 +49,7 @@ export default function DashboardPage() {
           </div>
           <hr className={styles.rule} />
           <ul className={styles.noteList}>
-            <li><span className={styles.dot}></span> 9/20 — Pumpkin Party</li>
+            <li><span className={styles.dot}></span> 9/20 - Pumpkin Party</li>
           </ul>
         </div>
       </section>
