@@ -1,7 +1,6 @@
 "use client";
-import Link from 'next/link';
-import ProfileButton from '../components/ProfileButton';
 import NavBar from '../components/NavBar';
+import FileUploadForm from '../components/FileUploadForm';
 import './globals.css';
 
 export default function HomePage() {
@@ -9,9 +8,6 @@ export default function HomePage() {
 
   return (
     <main>
-      <div className="top-right-position-wrapper"> 
-        <ProfileButton isLoggedIn={userStatus} />
-      </div>
       <NavBar />
 
       <section className="hero">
@@ -41,19 +37,18 @@ export default function HomePage() {
                 Using a templating system, the creation of a webpage has never been easier and affordable.<br/>
         </section>
         <h3 id="section-head">Join Us</h3>
-            <section id='join'>Are you an innovator?<br/>
-                Do you have what it takes?
-            </section>
-            <button>
-                <Link href="#">Apply</Link>
-        </button>
+            
         
 
         <div className="cta-row">
           <a href="/signup" className="btn primary">Create account</a>
           <br />
           <br />
-          <a href="/create-flyer" className="btn secondary">Create an event</a>
+        </div>
+        
+        <div style={{ marginTop: 24 }}>
+          <h3>Upload an event flyer</h3>
+          <FileUploadForm />
         </div>
       </section>
     </main>

@@ -1,17 +1,3 @@
-/* Positioning Wrapper (Targets the div in page.tsx) */
-.top-right-position-wrapper {
-  /* CRITICAL: Fixes the element relative to the browser window (viewport) */
-  position: fixed;
-
-  /* Positions the element from the top edge */
-  top: 20px;
-
-  /* Positions the element from the right edge */
-  right: 20px;
-
-  /* Ensures it sits above all other content on the page */
-  z-index: 2000;
-}
 
 /* --- CSS VARIABLES FOR EASY CHANGES --- */
 :root {
@@ -105,7 +91,7 @@
   display: flex;
   gap: 12px; /* space between buttons */
   align-items:center;
-  padding: 12px 370px;
+  padding: 12px 450px;
 }
 
 .nav-button {
@@ -136,6 +122,11 @@
   border-radius: 999px;
   text-decoration: none;
   border: 1px solid #d0d0d0;
+}
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 .hero {
   text-align: center;

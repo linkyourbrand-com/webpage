@@ -1,19 +1,26 @@
 "use client";
 import React from 'react';
+import ProfileButton from './ProfileButton';
 
-export default function NavBar() {
+export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) {
   const scrollToSection = (sectionId: string) => {
-          const section = document.getElementById(sectionId);
-          if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-          }
-        };
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-links">
         <button onClick={() => scrollToSection('mission')} className="nav-link">Our Mission</button>
         <button onClick={() => scrollToSection('about')} className="nav-link">About us</button>
         <button onClick={() => scrollToSection('join')} className="nav-link">Join us</button>
+      </div>
+
+      {/* Right side: profile button */}
+      <div className="nav-right">
+        <ProfileButton isLoggedIn={isLoggedIn} />
       </div>
     </nav>
   );
