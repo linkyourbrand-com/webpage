@@ -35,7 +35,7 @@ export default function ProfileButton({ isLoggedIn, username }: ProfileButtonPro
     </div>
   );
 }
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 
 interface ProfileButtonsProps {
     username?: string // optional string
@@ -60,4 +60,4 @@ function ProfileButton({ username, loggedIn, imageUrl }: ProfileButtonsProps) {
         </div>
     )
 }
-export default ProfileButton;
+export default ProfileButton;*/
