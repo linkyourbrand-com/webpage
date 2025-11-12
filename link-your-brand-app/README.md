@@ -20,6 +20,41 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Local development & upload testing (quick)
+
+If you want to test the file upload flow locally (the app can store uploads in LocalStack S3 or locally), follow these steps.
+
+1. Install dependencies and start the dev server:
+
+```powershell
+cd 'C:\Users\guste\Downloads\webpage\link-your-brand-app'
+npm install
+npm run dev
+```
+
+2. (Optional) Use LocalStack to emulate S3:
+
+```powershell
+# Run LocalStack with Docker (S3 API exposed at localhost:4566)
+docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack:latest
+```
+
+3. Create a `.env.local` in the app folder if you want to enable S3 uploads (example):
+
+```text
+USE_S3=true
+UPLOAD_BUCKET=linkyourbrand-uploads
+S3_ENDPOINT=http://localhost:4566
+S3_PUBLIC_URL=http://localhost:4566
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=test
+AWS_SECRET_ACCESS_KEY=test
+```
+
+4. Use the upload form on the homepage or curl to POST a file to `/api/upload`.
+
+If `USE_S3=false` files will be written to `public/uploads/` instead.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

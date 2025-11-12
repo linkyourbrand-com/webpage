@@ -48,7 +48,7 @@ body{
   display: flex;
   gap: 12px; /* space between buttons */
   align-items:center;
-  padding: 12px 370px;
+  padding: 12px 450px;
 }
 
 .nav-button {
@@ -79,6 +79,11 @@ body{
   border-radius: 999px;
   text-decoration: none;
   border: 1px solid #d0d0d0;
+}
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 .hero {
   text-align: center;
