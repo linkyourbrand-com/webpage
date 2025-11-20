@@ -1,0 +1,23 @@
+/* Position the dropdown relative to its parent */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style and position the dropdown content */
+.dropdown-content {
+    width: 500px;
+    position: absolute;
+    color: black;
+    justify-content: center;
+  top: 100%;   /* directly below the button */
+  left: 0;
+  background-color: white;
+  padding: 1rem;
+  min-width: 250px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000; /* ensure it shows above the navbar */
+}
+
