@@ -9,7 +9,7 @@ interface MyFormProps {
 
 export default function CreateEventForm({ onSubmit }: MyFormProps){
     //this is for creating events not logging in.
-    const [email, setEmail] = useState('test@email.com');
+    const [email, setEmail] = useState('');
     const [eventname, setEventname] = useState('');
     const [eventDate, setEventDate] = useState();
     const [startTime, setStartTime] = useState();
@@ -26,7 +26,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
 
     return(
         <div className='container-fluid'>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="text" className='form-label'>Event Name</label>
                     <input 
@@ -115,6 +115,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     id='contact' 
                     name='organizercontact' 
                     value={email}
+                    placeholder='test@email.com'
                     required/>
                 </div>
 
