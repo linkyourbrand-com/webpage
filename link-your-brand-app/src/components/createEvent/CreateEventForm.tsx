@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { FormEvent } from 'react';
+import FileUploadForm from '../FileUploadForm';
 
 interface MyFormProps {
   onSubmit: () => void;  // or whatever shape you need
@@ -36,6 +37,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     className='form-control' 
                     name='ename' 
                     value={eventname}
+                    onChange={(e) => setEventname(e.target.value)}
                     required/>
                 </div>
 
@@ -116,6 +118,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     name='organizercontact' 
                     value={email}
                     placeholder='test@email.com'
+                    onChange={(e) => setEmail(e.target.value)}
                     required/>
                 </div>
 
@@ -123,6 +126,13 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     <label className='form-label'>Event Tags</label>
                     <br/>
                     <input type='hidden' id='etags' name='tags' required/>
+                </div>
+                <br/>
+
+                <div>
+                    <label className='form-label'>Upload banner</label>
+                    <FileUploadForm />
+                    <br/>
                 </div>
 
                 <button type='submit' className='btn btn-outline-primary'>Create</button>
