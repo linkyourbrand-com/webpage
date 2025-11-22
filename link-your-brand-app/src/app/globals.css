@@ -1,80 +1,37 @@
-
-/* --- CSS VARIABLES FOR EASY CHANGES --- */
-:root {
-  --dropdown-bg-color: #f3f3f3;
-  /* Your requested Grey background */
-  --font-family-base: 'Times New Roman', Times, serif;
-  /* Your requested font */
-  --primary-color: #007bff;
-  /* Just a placeholder for link color */
+body{
+  background-color: #113c60;
+  color: silver;
+  padding: 30px;
 }
 
-/* 1. Main Container (Applies Font and Positioning) */
-.profile-button-container {
-  /* This is critical for positioning the dropdown relative to the button */
-  position: relative;
-  display: inline-block;
-  font-family: var(--font-family-base);
-  /* Apply Time New Roman font */
+.center{
+  background-color: #05243c;
+  border:#05243c;
+  border-radius: 5%;
 }
-
-/* 2. Toggle Button and Image */
-.profile-toggle {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+.main-section{
+  padding-top: 50px;
+  padding-bottom: 55px;
   display: flex;
-  /* Helps align the image and any text you might add */
-  align-items: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  justify-content: center;
+  text-align: center;
+}
+#section-head{
+}  
+
+#apply{
+  display:block;
+  margin: 0 auto;
 }
 
-.profile-toggle img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  /* Makes the image circular */
-  object-fit: cover;
-  border: 2px solid #ccc;
-  /* Optional: a subtle border for definition */
+.main-head{
+  padding-top: 75px;
+  display:flex;
+  justify-content: center;
+  font-size: 40px;
 }
-
-/* 3. The Dropdown Menu Body (The grey, rounded box) */
-.dropdown-menu {
-  position: absolute;
-  top: 110%;
-  /* Place it slightly below the button */
-  right: 0;
-  /* Align it to the right of the button */
-  min-width: 150px;
-
-  /* Apply your requested styles */
-  background-color: var(--dropdown-bg-color);
-  /* Grey Background */
-  border-radius: 10px;
-  /* Rounded Dropdown Body */
-
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding: 8px 0;
-  /* Vertical padding inside the menu */
-}
-
-/* 4. Individual Dropdown Items */
-.dropdown-item {
-  display: block;
-  /* Makes the whole area clickable */
-  padding: 8px 16px;
-  text-decoration: none;
-  color: #333;
-  text-align: left;
-}
-
-.dropdown-item:hover {
-  background-color: #e0e0e0;
-  /* Slightly darker grey on hover */
-}
-
 /* 5. Login/Signup Link (When logged out) */
 .login-signup-link {
   text-decoration: none;
