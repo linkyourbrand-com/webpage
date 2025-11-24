@@ -8,8 +8,24 @@ interface MyFormProps {
   onSubmit: () => void;  // or whatever shape you need
 }
 
+async function createEvent(data:any){
+    const res = await fetch("/api/events", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to create event");
+  }
+
+  return res.json();
+}
+
+//TODO implement search of db for stored tags.
 export default function CreateEventForm({ onSubmit }: MyFormProps){
-    //this is for creating events not logging in.
     const [email, setEmail] = useState('');
     const [eventname, setEventname] = useState('');
     const [eventDate, setEventDate] = useState();
@@ -20,9 +36,27 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
     const [address, setAddress] = useState();
     const [numAttend, setNumAttend] = useState();
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSubmit();
+        var remote:string = "in-person";
+        if(virt === true){
+            remote = "remote";
+        }
+        //also need to grab the organizer/userid from cognito.
+
+        createEvent({
+            title: eventname,
+            description: des,
+            organizerId: "abc123",
+            attendCount: 0,
+            location_type: remote,
+            addy: address,
+            start: startTime,
+            end: endTime,
+            organizer_contact: email,
+            eventTags: ["tech", "test"],
+        });
     };
 
     return(
@@ -76,7 +110,13 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
 
                 <div className='row text-center'>
                     <label htmlFor='text' className='form-label'>Description</label>
-                    <input type='text' id='eDes' name='description' className='form-control'/>
+                    <input 
+                    type='text' 
+                    id='eDes' 
+                    name='description' 
+                    className='form-control'
+                    value={des}
+                    />
                 </div>
 
                 <div className='form-check row text-center'>
