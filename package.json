@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "drizzle-kit": "^0.31.6"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.7",
+    "v": "^0.3.0"
+  }
+}
