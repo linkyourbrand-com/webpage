@@ -21,3 +21,6 @@
   z-index: 1000; /* ensure it shows above the navbar */
 }
 
+.form-label{
+  justify-content: center;
+}
