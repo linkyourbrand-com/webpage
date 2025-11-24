@@ -1,0 +1,151 @@
+'use client';
+import React from 'react';
+import { useState } from 'react';
+import { FormEvent } from 'react';
+import FileUploadForm from '../FileUploadForm';
+
+interface MyFormProps {
+  onSubmit: () => void;  // or whatever shape you need
+}
+
+export default function CreateEventForm({ onSubmit }: MyFormProps){
+    //this is for creating events not logging in.
+    const [email, setEmail] = useState('');
+    const [eventname, setEventname] = useState('');
+    const [eventDate, setEventDate] = useState();
+    const [startTime, setStartTime] = useState();
+    const [endTime, setEndTime] = useState();
+    const [des, setDes] = useState('');
+    const [virt, setVirtual] = useState(false);
+    const [address, setAddress] = useState();
+    const [numAttend, setNumAttend] = useState();
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        onSubmit();
+    };
+
+    return(
+        <div className='container-fluid'>
+            <form onSubmit={handleSubmit}>
+                <div className='row'>
+                    <label htmlFor="text" className='form-label text-center'>Event Name</label>
+                    <input 
+                    type='text' 
+                    id='eventName' 
+                    placeholder='Burning Man' 
+                    className='form-control' 
+                    name='ename' 
+                    value={eventname}
+                    onChange={(e) => setEventname(e.target.value)}
+                    required/>
+                </div>
+
+                <div className='row'>
+                    <label htmlFor='date' className='form-label center-text'>Event Date</label> <br/>
+                    <input 
+                    type='date' 
+                    id='etime' 
+                    name='time'
+                    value={eventDate} 
+                    required/>
+                    <br/>
+
+                    <div className='col'>
+                        <label htmlFor='start' className='form-label'>Start Time</label> <br/>
+                        <input 
+                        type='time' 
+                        id='etime' 
+                        name='start'
+                        value={startTime} 
+                        required/>
+                    </div>
+                    <div className='col'></div>
+                    <div className='col'>
+                        <label htmlFor='end' className='form-label'>End Time</label> <br/>
+                        <input 
+                        type='time' 
+                        id='etime' 
+                        name='end'
+                        value={endTime} 
+                        required/>
+                    </div>
+
+                </div>
+                <hr/>
+
+                <div className='row text-center'>
+                    <label htmlFor='text' className='form-label'>Description</label>
+                    <input type='text' id='eDes' name='description' className='form-control'/>
+                </div>
+
+                <div className='form-check row text-center'>
+                    <label htmlFor="address" className='form-label'>Virtual?</label> <br/>
+                    <input 
+                    className='form-check-input' 
+                    type='checkbox' 
+                    id='location' 
+                    name="option" 
+                    checked={virt}                 // controlled
+                    onChange={(e) => setVirtual(e.target.checked)}/>
+                </div>
+                <br/>
+
+                <div className='row text-center'>
+                    <label htmlFor='text' className='form-label'>Event Address</label>
+                    <input 
+                    placeholder='Enter street address or virtual link' 
+                    type='text' 
+                    id="addy" 
+                    name='address' 
+                    className='form-control' 
+                    value={address} 
+                    required/>
+                </div>
+                <hr/>
+
+                <div className='row text-center'>
+                    <label htmlFor='number' className='form-label'>Max # attendees</label>
+                    <br/>
+                    <input 
+                    type='number' 
+                    id='maxattend' 
+                    name='max'
+                    value={numAttend}/>
+                </div>
+
+                <div className='row text-center'>
+                    <label htmlFor='email' className='form-label'>Event contact email</label>
+                    <br/>
+                    <input 
+                    type='email' 
+                    id='contact' 
+                    name='organizercontact' 
+                    value={email}
+                    placeholder='test@email.com'
+                    onChange={(e) => setEmail(e.target.value)}
+                    required/>
+                </div>
+
+                <div className='row text-center'>
+                    <label className='form-label'>Event Tags</label>
+                    <br/>
+                    <input type='hidden' id='etags' name='tags' required/>
+                </div>
+                <br/>
+
+                <div className='row text-center'>
+                    <label className='form-label'>Upload Banner</label>
+                    <FileUploadForm />
+                    <br/>
+                </div>
+                <br/>
+
+                <div className='row'>
+                    <button type='submit' className='btn btn-outline-primary'>Create</button>
+                </div>
+
+            </form>
+        </div>
+    );
+}
