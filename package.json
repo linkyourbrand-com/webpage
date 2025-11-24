@@ -1,4 +1,6 @@
 {
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.930.0"
   "devDependencies": {
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
