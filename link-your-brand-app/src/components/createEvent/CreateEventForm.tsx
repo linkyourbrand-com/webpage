@@ -28,8 +28,8 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
     return(
         <div className='container-fluid'>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="text" className='form-label'>Event Name</label>
+                <div className='row'>
+                    <label htmlFor="text" className='form-label text-center'>Event Name</label>
                     <input 
                     type='text' 
                     id='eventName' 
@@ -41,8 +41,8 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     required/>
                 </div>
 
-                <div>
-                    <label htmlFor='date' className='form-label'>Event Date</label> <br/>
+                <div className='row'>
+                    <label htmlFor='date' className='form-label center-text'>Event Date</label> <br/>
                     <input 
                     type='date' 
                     id='etime' 
@@ -51,32 +51,36 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     required/>
                     <br/>
 
-                    <label htmlFor='start' className='form-label'>Start Time</label> <br/>
-                    <input 
-                    type='time' 
-                    id='etime' 
-                    name='start'
-                    value={startTime} 
-                    required/>
-                    <br/>
-
-                    <label htmlFor='end' className='form-label'>End Time</label> <br/>
-                    <input 
-                    type='time' 
-                    id='etime' 
-                    name='end'
-                    value={endTime} 
-                    required/>
+                    <div className='col'>
+                        <label htmlFor='start' className='form-label'>Start Time</label> <br/>
+                        <input 
+                        type='time' 
+                        id='etime' 
+                        name='start'
+                        value={startTime} 
+                        required/>
+                    </div>
+                    <div className='col'></div>
+                    <div className='col'>
+                        <label htmlFor='end' className='form-label'>End Time</label> <br/>
+                        <input 
+                        type='time' 
+                        id='etime' 
+                        name='end'
+                        value={endTime} 
+                        required/>
+                    </div>
 
                 </div>
+                <hr/>
 
-                <div>
+                <div className='row text-center'>
                     <label htmlFor='text' className='form-label'>Description</label>
                     <input type='text' id='eDes' name='description' className='form-control'/>
                 </div>
 
-                <div className='form-check'>
-                    <label htmlFor="address" className='form-check-label'>Virtual?</label> <br/>
+                <div className='form-check row text-center'>
+                    <label htmlFor="address" className='form-label'>Virtual?</label> <br/>
                     <input 
                     className='form-check-input' 
                     type='checkbox' 
@@ -87,7 +91,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                 </div>
                 <br/>
 
-                <div>
+                <div className='row text-center'>
                     <label htmlFor='text' className='form-label'>Event Address</label>
                     <input 
                     placeholder='Enter street address or virtual link' 
@@ -98,8 +102,9 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     value={address} 
                     required/>
                 </div>
+                <hr/>
 
-                <div>
+                <div className='row text-center'>
                     <label htmlFor='number' className='form-label'>Max # attendees</label>
                     <br/>
                     <input 
@@ -109,7 +114,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     value={numAttend}/>
                 </div>
 
-                <div>
+                <div className='row text-center'>
                     <label htmlFor='email' className='form-label'>Event contact email</label>
                     <br/>
                     <input 
@@ -122,20 +127,23 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     required/>
                 </div>
 
-                <div>
+                <div className='row text-center'>
                     <label className='form-label'>Event Tags</label>
                     <br/>
                     <input type='hidden' id='etags' name='tags' required/>
                 </div>
                 <br/>
 
-                <div>
-                    <label className='form-label'>Upload banner</label>
+                <div className='row text-center'>
+                    <label className='form-label'>Upload Banner</label>
                     <FileUploadForm />
                     <br/>
                 </div>
+                <br/>
 
-                <button type='submit' className='btn btn-outline-primary'>Create</button>
+                <div className='row'>
+                    <button type='submit' className='btn btn-outline-primary'>Create</button>
+                </div>
 
             </form>
         </div>
