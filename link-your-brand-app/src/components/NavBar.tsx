@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import ProfileButton from './ProfileButton';
+import Link from 'next/link';
 
 export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) {
   const scrollToSection = (sectionId: string) => {
@@ -21,7 +22,7 @@ export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) 
       {/* Right side: profile button */}
       <div className="nav-right">
         <ProfileButton isLoggedIn={isLoggedIn} />
-        <a href="link-your-brand-app\src\components\Events.tsx" className="nav-link">Events</a>
+        <Link href="/events" className="nav-link">Events</Link>
         <a href="#explore" className="nav-link">Explore</a>
         <a href="#mission" className="nav-link">Our Mission</a>
         <a href="#about" className="nav-link">About us</a>
