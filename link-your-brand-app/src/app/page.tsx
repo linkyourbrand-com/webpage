@@ -32,7 +32,7 @@ export default function HomePage() {
   return (
     <main>
       <div className="top-right-position-wrapper"> 
-        <ProfileButton loggedIn={userStatus} />
+        <ProfileButton isLoggedIn={userStatus} />
       </div>
       <NavBar />
       <div className='center'>
