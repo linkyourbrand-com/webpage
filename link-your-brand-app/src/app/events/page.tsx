@@ -1,5 +1,7 @@
+"use client";
 import { useEffect } from "react";
-import generateQRCode from "./QRCode";
+import generateQRCode from "../../components/QRCode";
+
 
 const events = [
   {
