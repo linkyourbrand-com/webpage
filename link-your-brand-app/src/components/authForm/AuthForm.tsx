@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 //TODO create method to register user and sign in.
 type logType = {
@@ -11,6 +12,7 @@ type logType = {
 
 export default function AuthForm({ logReg }: logType){
     //in future need to add other fields for registering like name, etc
+    const router = useRouter();
      //0 for register, 1 for login.
     const [username, setUsername] = useState(''); // should be an email
     const [password, setPassword] = useState('');
@@ -32,6 +34,9 @@ export default function AuthForm({ logReg }: logType){
                 const data = await res.json()
                 if(!res.ok){
                     console.error("Login Failed", data.error);
+                    //if current page is the company landing go to dashboard if organizer else explore
+                    //otherwise just redirect to current page with user info.
+                    //router.push("/explore");
                 }
                 else{
                     console.log("Login Successful", data);
