@@ -9,7 +9,7 @@ interface MyFormProps {
 }
 
 async function createEvent(data:any){
-    const res = await fetch("/api/events", {
+    const res = await fetch("/api/database/event", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
