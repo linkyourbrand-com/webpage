@@ -76,7 +76,9 @@ export default function AuthForm({ logReg }: logType){
                     body: JSON.stringify({ email:username, password })
                 })
                 //may need more fields from the user.
+                const userData = await res.json();
                 await addUserInfo({
+                    id: userData.userSub,
                     accountType: organizer,
                     email: username,
                     location: location,
