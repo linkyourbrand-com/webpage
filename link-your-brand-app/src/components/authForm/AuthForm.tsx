@@ -9,6 +9,22 @@ type logType = {
     logReg: boolean;
 }
 
+async function addUserInfo(data:any){
+    const res = await fetch("/api/uaser_info", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if(!res.ok){
+        throw new Error("Failed to upload user info");
+    }
+    
+    return res.json();
+}
+
 
 export default function AuthForm({ logReg }: logType){
     //in future need to add other fields for registering like name, etc
@@ -59,7 +75,14 @@ export default function AuthForm({ logReg }: logType){
                     },
                     body: JSON.stringify({ email:username, password })
                 })
-                //will add more to fill in userinfo to the drizzle db.
+                //may need more fields from the user.
+                const userData = await res.json();
+                await addUserInfo({
+                    id: userData.userSub,
+                    accountType: organizer,
+                    email: username,
+                    location: location,
+                });
 
                 const data = await res.json()
                 if(!res.ok){

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import "leaflet/dist/leaflet.css";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,11 +33,6 @@ export default function RootLayout({
         <title>link-your-brand-web</title>
       </head>
       <body>
-        <header className="topbar">
-          <div className="left">
-            <Link href="/dashboard" className="btn link">Dashboard</Link>
-          </div>
-        </header>
         {children}
       </body>
     </html>
