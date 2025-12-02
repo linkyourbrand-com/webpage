@@ -17,6 +17,7 @@ const page = () => {
 }
 export default page;*/
 "use client";
+import Map from "@/components/Map";
 import ProfileButton from '../components/ProfileButton';
 import AboutUsSection from '@/components/AboutUsSection';
 import OurMissionSection from '@/components/OurMissionSection';
@@ -31,6 +32,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <ProfileButton username="james" isLoggedIn={userStatus} />
       <NavBar />
       <div className='center'>
         <CarouselExamples />
@@ -40,6 +42,8 @@ export default function HomePage() {
         <OurMissionSection />
         <hr />
         <JoinUsSection />
+        <hr />
+        <Map lat={40.7128} lng={-74.0060} />
       </div>
 
 
