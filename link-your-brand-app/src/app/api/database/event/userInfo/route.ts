@@ -113,3 +113,19 @@ export async function POST(request: Request){
             { status: 400 });
     }
 }
+
+export async function GET() {
+  try {
+    const users = await db
+      .select()
+      .from(userInfo);
+
+    return NextResponse.json(users, { status: 200 });
+
+  } catch (err) {
+    return NextResponse.json(
+      { error: "Failed to fetch user info", detail: err },
+      { status: 500 }
+    );
+  }
+}
