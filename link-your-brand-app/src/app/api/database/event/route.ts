@@ -52,3 +52,98 @@ export async function POST(request: Request){
         { status: 400 })
     }
 }
+
+export async function DELETE(request: Request){
+    try{
+        const { searchParams } = new URL(request.url);
+        const eventId = searchParams.get('id');
+        if(!eventId){
+            return NextResponse.json(
+                { error: "Event id required to delete"},
+                { status: 400 }
+            );
+        }
+
+        const deleted = await db
+        .delete(events)
+        .where(eq(events.id, Number(eventId)))
+        .returning();
+
+        // if nothing was deleted
+        if (deleted.length === 0) {
+        return NextResponse.json(
+            { error: "Event not found" },
+            { status: 404 }
+        );
+        }
+
+        return NextResponse.json(
+        { message: "Event deleted successfully", deleted },
+        { status: 200 }
+        );
+
+    } catch (err) {
+        return NextResponse.json(
+        { error: "Failed to delete event", detail: err },
+        { status: 500 }
+        );
+    }
+}
+
+export default async function PUT(request: Request){
+    try{
+        const { searchParams } = new URL(request.url);
+        const eventId = searchParams.get('id');
+
+        const body = await request.json();
+        const { title, description, rsvp_count,
+            location_type,
+            address,
+            start_time,
+            end_time,
+            organizer_contact,
+            tags } = body;
+
+        if(!eventId){
+            return NextResponse.json(
+                { error: "Event id required to update"},
+                { status: 400 }
+            );
+        }
+
+        const updated = await db
+        .update(events)
+        .set({
+            title,
+            description,
+            rsvp_count,
+            location_type,
+            address,
+            start_time,
+            end_time,
+            organizer_contact,
+            tags
+        })
+        .where(eq(events.id, Number(eventId)))
+        .returning();
+
+        if (updated.length === 0) {
+              return NextResponse.json(
+                { error: "Event not found" },
+                { status: 404 }
+              );
+            }
+        
+            return NextResponse.json(
+              { success: true, updated },
+              { status: 200 }
+            );
+    }
+    catch(err){
+        console.error("PUT error:", err);
+        return NextResponse.json(
+            { error: "failed to update events", detail: err },
+            { status: 500 }
+        );
+    }
+}
