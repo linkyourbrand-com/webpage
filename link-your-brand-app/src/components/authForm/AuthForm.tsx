@@ -10,7 +10,7 @@ type logType = {
 }
 
 async function addUserInfo(data:any){
-    const res = await fetch("/api/uaser_info", {
+    const res = await fetch("/api/user_info", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
