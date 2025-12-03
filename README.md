@@ -17,6 +17,6 @@ This full-stack web application is built to provide users with a streamlined way
 ### Technical Stack
 
 * **Frontend:** React
-* **Backend:** Node.js
-* **Database:** MongoDB
+* **Backend:** Next.js
+* **Database:** Drizzle
 
