@@ -31,9 +31,6 @@ export default function HomePage() {
 
   return (
     <main>
-      <div className="top-right-position-wrapper"> 
-        <ProfileButton isLoggedIn={userStatus} />
-      </div>
       <NavBar />
       <div className='center'>
         <CarouselExamples />

@@ -4,6 +4,8 @@ import { relations } from 'drizzle-orm';
 // Enum for location type
 export const locationType = pgEnum('location_type', ['in_person', 'remote', 'hybrid']);
 
+export const accountTypes = pgEnum('account_type', ['organizer', 'attendee']);
+
 /**
  * Events table
  * - `organizer_cognito_id` stores the Cognito user identifier string for the organizer.
@@ -91,6 +93,13 @@ export const registrationsRelations = relations(registrations, ({ one }) => ({
 export const tagsRelations = relations(tags, ({ many }) => ({
     eventTags: many(eventTags),
 }));
+
+export const userInfo = pgTable('user_info', {
+    id: serial("id").primaryKey(),
+    email: text("name").notNull(),
+    accountType: accountTypes('account_type'),
+    location: text("location").notNull(),
+});
 
 //Select join user and registrations to get all users registered for an event
 // db.select().from(users).innerJoin(registrations, users.id.eq(registrations.userId)).where(registrations.eventId.eq(1));

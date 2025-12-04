@@ -11,13 +11,16 @@ export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) 
     }
   };
 
-  return (
-    <nav className="navbar">
-      <div className="nav-links">
+  //issue the navbar is displayed twice
+  //section removed.
+  /*<div className="nav-links">
         <button onClick={() => scrollToSection('mission')} className="nav-link">Our Mission</button>
         <button onClick={() => scrollToSection('about')} className="nav-link">About us</button>
         <button onClick={() => scrollToSection('join')} className="nav-link">Join us</button>
-      </div>
+      </div>*/
+  //TODO change the link for the explore button to the explore page when finished.
+  return (
+    <nav className="navbar">
 
       {/* Right side: profile button */}
       <div className="nav-right">
