@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken"; // optional if you want to decode it
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET() {
   const cookieStore = await cookies();
   const idToken = cookieStore.get("idToken")?.value;
 
