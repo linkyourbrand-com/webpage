@@ -13,5 +13,5 @@ export async function GET() {
   // Optional: decode token to return user info instead of the raw token
   const decoded = jwt.decode(token);
 
-  return NextResponse.json({ token, decoded });
+  return NextResponse.json({ token, claims:decoded });
 }
