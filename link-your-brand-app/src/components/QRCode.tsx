@@ -1,6 +1,6 @@
 import QRCode from 'qrcode';
 
-const generateQRCode = (canvasId: string, url: string): void => {;
+const generateQRCode = (canvasId: string, url: string): void => {
       QRCode.toCanvas(document.getElementById(canvasId), url, {
           margin: 2,
           width: 150,
