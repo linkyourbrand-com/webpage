@@ -1,6 +1,61 @@
 import styles from "./dashboard.module.css";
+import { useState, useEffect } from 'react';
+
+type Event = {
+  id: number;
+  title: string;
+  description: string | null;
+  organizer_cognito_id: string | null;
+  rsvp_count: number | null;
+  location_type: "in_person" | "remote" | "hybrid";
+  address: string | null;
+  start_time: string | null;
+  end_time: string | null;
+  organizer_contact: string | null;
+  tags: any;
+  created_at: string;
+};
+
+async function getIdToken() {
+  const res = await fetch("/api/auth/id-token", {
+    method: "GET",
+    credentials: "include", // important: sends cookies
+  });
+
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
 
 export default function DashboardPage() {
+  const [data, setData] = useState<Event[] | null>(null);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [uuid, setID] = useState(null);
+
+  useEffect(() => {
+          const loadEvent = async () => {
+          try {
+              setID(await getIdToken());
+  
+              if(!uuid) return;
+              const res = await fetch('/api/database/event/myEvent/?uuid=${uuid.claims.sub}', {
+                  method: "GET",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+              });
+              const json = await res.json();
+              setData(json);
+              setEvents(json)
+          } catch (err) {
+              console.error("Failed to load events:", err);
+          }
+          };
+  
+          loadEvent();
+      }, [uuid]);
+
+
   return (
     <main className={styles.pageRoot}>
       <section className={styles.canvas}>
