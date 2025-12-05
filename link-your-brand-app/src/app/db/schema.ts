@@ -20,6 +20,7 @@ export const events = pgTable('events', {
     address: text('address'),
     start_time: timestamp('start_time'),
     end_time: timestamp('end_time'),
+    date: timestamp('date'),
     organizer_contact: text('organizer_contact'),
     tags: json('tags'),
     created_at: timestamp('created_at').defaultNow(),

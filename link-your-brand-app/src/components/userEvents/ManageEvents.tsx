@@ -15,6 +15,7 @@ type Event = {
   address: string | null;
   start_time: string | null;
   end_time: string | null;
+  date: string | null;
   organizer_contact: string | null;
   tags: any;
   created_at: string;
@@ -134,6 +135,7 @@ export default function ManageEvents({ onSubmit }: MyFormProps){
                 address: String(addresss),
                 start_time: String(startTime),
                 end_time: String(endTime),
+                date: String(eventDate),
                 organizer_contact: email,
                 tags: ["tech", "test"],
                 created_at: "blah",
@@ -154,6 +156,7 @@ export default function ManageEvents({ onSubmit }: MyFormProps){
                     <p>Location: {event.location_type}</p>
                     <p>RSVP Count: {event.rsvp_count}</p>
                     <p>Address: {event.address}</p>
+                    <p>Date: {event.date}</p>
                     <p>Starts: {event.start_time}</p>
                     <p>Ends: {event.end_time}</p>
 
