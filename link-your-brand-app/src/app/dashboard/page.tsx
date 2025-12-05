@@ -31,6 +31,10 @@ export default function DashboardPage() {
   const [data, setData] = useState<Event[] | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
   const [uuid, setID] = useState(null);
+  const [date, setDate] = useState("DD/MM/YYYY");
+  const [eventName, setEventName] = useState("Name of pinned event");
+  const [eventAddy, setEventAddy] = useState();
+  const [eventRsvps, setEventRsvps] = useState();
 
   useEffect(() => {
           const loadEvent = async () => {
@@ -38,17 +42,21 @@ export default function DashboardPage() {
               setID(await getIdToken());
   
               if(!uuid) return;
-              const res = await fetch('/api/database/event/myEvent/?uuid=${uuid.claims.sub}', {
+              const res = await fetch('/api/database/event/top/?uuid=${uuid.claims.sub}', {
                   method: "GET",
                   headers: {
                       "Content-Type": "application/json"
                   },
               });
               const json = await res.json();
+              setDate(json.date)
               setData(json);
-              setEvents(json)
+              setEvents(json);
+              setEventAddy(json.address);
+              setEventRsvps(json.rsvps_count);
+              setEventName(json.title)
           } catch (err) {
-              console.error("Failed to load events:", err);
+              console.error("Failed to load pinned event:", err);
           }
           };
   
@@ -60,21 +68,21 @@ export default function DashboardPage() {
     <main className={styles.pageRoot}>
       <section className={styles.canvas}>
         <div className={styles.pinnedCard}>
-          <div className={styles.pill}>Name of pinned event</div>
+          <div className={styles.pill}>{eventName}</div>
 
           <div className={styles.field}>
             <span className={styles.label}>Date:</span>
-            <span className={styles.value}>DD/MM/YYYY</span>
+            <span className={styles.value}>{date}</span>
           </div>
 
           <div className={styles.field}>
             <span className={styles.label}>Location:</span>
-            <span className={styles.value}></span>
+            <span className={styles.value}>{eventAddy}</span>
           </div>
 
           <div className={styles.field}>
             <span className={styles.label}># Attendee’s:</span>
-            <span className={styles.value}></span>
+            <span className={styles.value}>{eventRsvps}</span>
           </div>
 
           <div className={styles.actionsRow}>
