@@ -15,7 +15,7 @@ export default function NavBar(){
     return(
         <div>
             <nav className='navbar'>
-                <div className='justify-content-center'>
+                <div className='nav-inner'>
                     {isLoggedIn && 
                         <div>
                             <a href='#explore' className='nav-link'>Explore</a>

@@ -27,7 +27,7 @@ export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) 
     <nav className="navbar">
 
       {/* Right side: profile button */}
-      <div className="nav-right">
+      <div className="nav-inner">
         <ProfileButton isLoggedIn={isLoggedIn} />
         <a href="#explore" className="nav-link">Explore</a>
         <a href="#mission" className="nav-link">Our Mission</a>

@@ -3,7 +3,7 @@ import EventAddress from './components/EventAddress';
 import EventDes from './components/EventDes';
 import EventRsvp from './components/EventRsvp';
 import EventStats from './components/EventStats';
-import NavBar from '@/components/NavBar';
+import NavBar from './components/NavBar';
 
 export default function ClientLandingPage(){
     //todo need to pass in parameters for the event info.

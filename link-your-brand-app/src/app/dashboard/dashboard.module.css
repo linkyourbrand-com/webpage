@@ -183,19 +183,16 @@
 }
 
 .navbar {
-  display: flex;
-  gap: 12px; /* space between buttons */
-  align-items:center;
-  padding: 12px 450px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centers children horizontally */
+    padding: 10px 0;
 }
-.nav-button {
-  display: inline-block;
-  padding: 8px 14px;
-  background-color: #e6e6e6; /* light grey */
-  color: #333;
-  border-radius: 999px; /* pill */
-  text-decoration: none;
-  border: 1px solid #d0d0d0;
+
+.nav-inner {
+    display: flex;
+    gap: 1rem;               /* spacing between items */
+    align-items: center;
 }
 
 .nav-button:hover {
