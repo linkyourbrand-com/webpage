@@ -13,7 +13,7 @@ export async function GET(request: Request){
     .from(registrations)
     .where(eq(registrations.id, Number(tableId)));
 
-    return NextResponse.json(registrations);
+    return NextResponse.json(rsvps);
 
 }
 

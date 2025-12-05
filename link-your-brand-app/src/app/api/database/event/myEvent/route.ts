@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 //todo add options to get events from specific user.
 export async function GET(request: Request){
     const { searchParams } = new URL(request.url);
-    const eventId = searchParams.get('organizer_cognito_id');
+    const eventId = searchParams.get("uuid");
 
     const event = await db
     .select()
