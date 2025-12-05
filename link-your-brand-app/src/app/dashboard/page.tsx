@@ -1,5 +1,7 @@
+'use client';
 import styles from "./dashboard.module.css";
 import { useState, useEffect } from 'react';
+import NavBar from "./Navbar";
 
 type Event = {
   id: number;
@@ -66,6 +68,7 @@ export default function DashboardPage() {
 
   return (
     <main className={styles.pageRoot}>
+      <NavBar />
       <section className={styles.canvas}>
         <div className={styles.pinnedCard}>
           <div className={styles.pill}>{eventName}</div>

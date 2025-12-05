@@ -181,3 +181,44 @@
     grid-template-columns: 1fr;
   }
 }
+
+.navbar {
+  display: flex;
+  gap: 12px; /* space between buttons */
+  align-items:center;
+  padding: 12px 450px;
+}
+.nav-button {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6; /* light grey */
+  color: #333;
+  border-radius: 999px; /* pill */
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+
+.nav-button:hover {
+  background-color: #dcdcdc;
+}
+/* NavBar component styles */
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6;
+  color: #333;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
