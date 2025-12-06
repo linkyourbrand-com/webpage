@@ -16,7 +16,7 @@ export default function ManageEvntsDropdown(){
 
             {isOpen && (
                 <div className='dropdown-content p-3' onClick={stopProp}>
-                    <ManageEvents />
+                    <ManageEvents onSubmit={() => console.log("submitted")}/>
                 </div>
             )}
 

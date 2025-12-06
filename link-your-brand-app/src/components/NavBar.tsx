@@ -1,6 +1,11 @@
 "use client";
 import React from 'react';
+import ClientLandingPage from '@/app/clientLanding/page';
+import ManageEvntsDropdown from './userEvents/ManageEvntsDropdown';
 import ProfileButton from './ProfileButton';
+import Link from 'next/link';
+
+
 import Link from 'next/link';
 
 export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) {
@@ -23,7 +28,7 @@ export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) 
     <nav className="navbar">
 
       {/* Right side: profile button */}
-      <div className="nav-right">
+      <div className="nav-inner">
         <ProfileButton isLoggedIn={isLoggedIn} />
         <Link href="/events" className="nav-link">Events</Link>
         <a href="#explore" className="nav-link">Explore</a>
@@ -31,6 +36,11 @@ export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) 
         <a href="#about" className="nav-link">About us</a>
         <a href="#join" className="nav-link">Join us</a>
         <a href="#contact" className="nav-link">Support</a>
+
+        <ManageEvntsDropdown />
+
+        <Link href="clientLanding" className='nav-link'>client</Link>
+        <Link href="dashboard" className='nav-link'>d-board</Link>
       </div>
     </nav>
   );

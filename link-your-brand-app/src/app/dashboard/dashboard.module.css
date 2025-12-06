@@ -181,3 +181,41 @@
     grid-template-columns: 1fr;
   }
 }
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centers children horizontally */
+    padding: 10px 0;
+}
+
+.nav-inner {
+    display: flex;
+    gap: 1rem;               /* spacing between items */
+    align-items: center;
+}
+
+.nav-button:hover {
+  background-color: #dcdcdc;
+}
+/* NavBar component styles */
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e6e6e6;
+  color: #333;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #d0d0d0;
+}
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
