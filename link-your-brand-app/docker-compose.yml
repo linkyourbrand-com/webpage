@@ -8,10 +8,10 @@ services:
       - "4566:4566"
       - "4571:4571"
     environment:
-      - LOCALSTACK_API_KEY=
-      - SERVICES=cognito-idp,iam,lambda,s3, rds  # <- must include 'cognito'
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN}
+      - SERVICES=cognito-idp,iam,lambda,s3,rds
       - DEBUG=1
+      - PERSISTENCE=1
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./data:/var/lib/localstack"
-
