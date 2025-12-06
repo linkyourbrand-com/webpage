@@ -8,6 +8,17 @@ interface MyFormProps {
   onSubmit: () => void;  // or whatever shape you need
 }
 
+async function getIdToken() {
+  const res = await fetch("/api/auth/id-token", {
+    method: "GET",
+    credentials: "include", // important: sends cookies
+  });
+
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
 async function createEvent(data:any){
     const res = await fetch("/api/database/event", {
     method: "POST",
@@ -37,18 +48,20 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
     const [numAttend, setNumAttend] = useState();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        const [uuid, setUuid] = useState(null);
+        setUuid(await getIdToken());
+
         e.preventDefault();
         onSubmit();
         var remote:string = "in-person";
         if(virt === true){
             remote = "remote";
         }
-        //also need to grab the organizer/userid from cognito.
 
         createEvent({
             title: eventname,
             description: des,
-            organizerId: "abc123",
+            organizerId: uuid,
             attendCount: 0,
             location_type: remote,
             addy: address,

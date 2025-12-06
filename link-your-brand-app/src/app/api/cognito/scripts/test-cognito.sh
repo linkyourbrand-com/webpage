@@ -8,15 +8,17 @@ echo "Testing sign up..."
 #  -H "Content-Type: application/json" \
 #  -d '{"email":"test@example.com","password":"Test1234"}'
 
-awslocal cognito-idp sign-up \
-  --client-id b7da0nu45bjlnsy7vetusr15vf \
+#go back to awslocal if you run into trouble
+sleep 4
+aws cognito-idp sign-up \
+  --client-id 3ksaexes4emgajm5tkhh5da3zm \
   --username test@example.com \
   --password "Password123!"
 
 
 #verify account manuelly
-vrfy=$(awslocal cognito-idp admin-confirm-sign-up \
-    --user-pool-id us-east-1_9009eea040bb404d8054087e3498fde2 \
+vrfy=$(aws cognito-idp admin-confirm-sign-up \
+    --user-pool-id us-east-1_7c8bf81e6f764a72857057919d3e11ab \
     --username test@example.com)
 echo "$vrfy"
 
@@ -25,3 +27,14 @@ echo "\n\nTesting sign in..."
 curl -X POST http://localhost:3000/api/auth/signin \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"Password123!"}'
+
+  #docker run -d \
+  #--name localstack \
+  #-p 4566:4566 \
+  #-e LOCALSTACK_API_KEY=ls-FifU2039-QUKO-yuxA-gaYI-tUfE34383509 \
+  #-e SERVICES=cognito-idp,dynamodb,s3,rds \
+  #localstack/localstack-pro
+
+  #aws --endpoint-url=http://localhost:4566 \
+  #  cognito-idp list-user-pool-clients \
+  #  --user-pool-id us-east-1_7c8bf81e6f764a72857057919d3e11ab

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Creating userpool"
-UserPoolid=$(aws --endpoint-url=http://localhost:4566 \
+UserPoolid=$(awslocal --endpoint-url=http://localhost:4566 \
   cognito-idp create-user-pool \
   --region us-east-1 \
   --pool-name LYBUserPool \
@@ -13,7 +13,7 @@ UserPoolid=$(aws --endpoint-url=http://localhost:4566 \
 echo "$UserPoolid"
 
   clientId=$(
-    aws --endpoint-url=http://localhost:4566 \
+    awslocal --endpoint-url=http://localhost:4566 \
   cognito-idp create-user-pool-client \
   --user-pool-id $UserPoolid \
   --client-name LYBWebApp \
