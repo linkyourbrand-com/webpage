@@ -2,7 +2,8 @@
 
 echo "creating local database"
 
-db=$(aws --endpoint-url=http://localhost:4566 \
+db=$(awslocal --endpoint-url=http://localhost:4566 \
+  rds create-db-instance \
   --region us-east-1 \
   --db-instance-identifier LYB-db \
   --db-instance-class db.t3.micro \
@@ -11,4 +12,4 @@ db=$(aws --endpoint-url=http://localhost:4566 \
   --master-user-password password123 \
   --allocated-storage 20)
 
-echo($db)
+echo "$db"
