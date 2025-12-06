@@ -1,14 +1,32 @@
+'use client';
 import './clientLanding.css';
 import EventAddress from './components/EventAddress';
 import EventDes from './components/EventDes';
 import EventRsvp from './components/EventRsvp';
 import EventStats from './components/EventStats';
 import NavBar from './components/NavBar';
+import { useState, useEffect } from 'react';
+
+
+async function fetchCount(eventId:Number) {
+  const res = await fetch(`/api/registrations?event_id=${eventId}`);
+  const data = await res.json();
+  return data.count;    // ← this matches the route's return value
+}
 
 export default function ClientLandingPage(){
     //todo need to pass in parameters for the event info.
     //todo pass custom object top component with all nessacary fields.
+    const [eId, setEid] = useState(1);
     const title = "Event name";
+    useEffect(() => {
+    async function load() {
+        const c = await fetchCount(eId);
+        setEid(c);
+    }
+    load();
+    }, [eId]);
+    
 
     return(
         <main>

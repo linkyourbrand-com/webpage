@@ -67,6 +67,9 @@ export default function ManageEvents({ onSubmit }: MyFormProps){
                 },
             });
             const json = await res.json();
+            const resCount = await fetch('/api/database/rsvp/count=${eId}');
+            const count = await resCount.json();
+            setNumAttend(count.count);
             setData(json);
             setEvents(json)
         } catch (err) {
