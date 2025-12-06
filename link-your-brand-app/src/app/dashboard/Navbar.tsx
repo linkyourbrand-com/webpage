@@ -14,7 +14,7 @@ export default function NavBar(){
         <div>
             <nav className='navbar'>
                 <div className='nav-inner'>
-                    <a href='#explore' className='nav-link'>Explore</a>
+                    <a href='/events' className='nav-link'>Explore</a>
                     <ManageEvntsDropdown />
                     <CreateEventDropdown />
                     <ProfileButton isLoggedIn={isLoggedIn}/>
