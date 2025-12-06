@@ -23,7 +23,7 @@ import OurMissionSection from '@/components/OurMissionSection';
 import JoinUsSection from '@/components/JoinUsSection';
 import CarouselExamples from '@/components/CarouselExamples';
 import NavBar from '../components/NavBar';
-import FileUploadForm from '../components/FileUploadForm';
+//import FileUploadForm from '../components/FileUploadForm';
 import './globals.css';
 
 export default function HomePage() {
@@ -50,11 +50,6 @@ export default function HomePage() {
           <a href="/signup" className="btn primary">Create account</a>
           <br />
           <br />
-        </div>
-        
-        <div style={{ marginTop: 24 }}>
-          <h3>Upload an event flyer</h3>
-          <FileUploadForm />
         </div>
       </section>
     </main>
