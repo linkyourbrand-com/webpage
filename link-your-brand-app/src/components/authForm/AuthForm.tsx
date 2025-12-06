@@ -10,8 +10,7 @@ type logType = {
 }
 
 async function addUserInfo(data:any){
-    //TODO change the url here.
-    const res = await fetch('/api/user_info', {
+    const res = await fetch("/api/uaser_info", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

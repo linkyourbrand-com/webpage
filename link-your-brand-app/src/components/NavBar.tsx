@@ -3,6 +3,7 @@ import React from 'react';
 import ClientLandingPage from '@/app/clientLanding/page';
 import ManageEvntsDropdown from './userEvents/ManageEvntsDropdown';
 import ProfileButton from './ProfileButton';
+import Link from 'next/link';
 
 
 import Link from 'next/link';
@@ -29,6 +30,7 @@ export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) 
       {/* Right side: profile button */}
       <div className="nav-inner">
         <ProfileButton isLoggedIn={isLoggedIn} />
+        <Link href="/events" className="nav-link">Events</Link>
         <a href="#explore" className="nav-link">Explore</a>
         <a href="#mission" className="nav-link">Our Mission</a>
         <a href="#about" className="nav-link">About us</a>

@@ -11,7 +11,7 @@ export async function GET(request: Request){
     const event = await db
     .select()
     .from(events)
-    .where(eq(events.id, Number(eventId)));
+    .where(eq(events.id, Number(eventId)))
 
     return NextResponse.json(event);
 }
