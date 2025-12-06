@@ -45,10 +45,16 @@ body{
 
 /* Simple navbar with grey rounded buttons */
 .navbar {
-  display: flex;
-  gap: 12px; /* space between buttons */
-  align-items:center;
-  padding: 12px 450px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centers children horizontally */
+    padding: 10px 0;
+}
+
+.nav-inner {
+    display: flex;
+    gap: 1rem;               /* spacing between items */
+    align-items: center;
 }
 
 .nav-button {

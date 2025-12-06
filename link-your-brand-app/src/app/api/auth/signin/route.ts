@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { serialize } from 'cookie';
 import { signIn } from '@/app/api/cognito/auth';
 
 export async function POST(request: NextRequest) {
@@ -21,13 +22,37 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       accessToken: result.accessToken,
       idToken: result.idToken,
       refreshToken: result.refreshToken,
       expiresIn: result.expiresIn
     })
+
+    response.cookies.set({
+      name: "accessToken",
+      value: String(result.accessToken),
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: result.expiresIn, // usually 3600 seconds
+      path: "/",
+    });
+
+    // (Optional) Store the idToken
+    response.cookies.set({
+      name: "idToken",
+      value: String(result.idToken),
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: result.expiresIn,
+      path: "/",
+    });
+
+    return response;
+
   } catch (error: any) {
     console.error('Signin API error:', error)
     return NextResponse.json(
