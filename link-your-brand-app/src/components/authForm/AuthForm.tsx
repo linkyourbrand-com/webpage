@@ -36,8 +36,6 @@ export default function AuthForm({ logReg }: logType){
     const [location, setLocation] = useState();
 
         async function handleLogin(e: any){
-            //e.preventDefault();
-            
             try{
                 const res = await fetch('/api/auth/signin',{
                 method:'POST',

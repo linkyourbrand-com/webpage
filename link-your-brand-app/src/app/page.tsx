@@ -31,6 +31,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <ProfileButton username="james" isLoggedIn={userStatus} />
       <NavBar />
       <div className='center'>
         <CarouselExamples />

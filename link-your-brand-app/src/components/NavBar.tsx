@@ -5,9 +5,6 @@ import ManageEvntsDropdown from './userEvents/ManageEvntsDropdown';
 import ProfileButton from './ProfileButton';
 import Link from 'next/link';
 
-
-import Link from 'next/link';
-
 export default function NavBar({ isLoggedIn = true }: { isLoggedIn?: boolean }) {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);

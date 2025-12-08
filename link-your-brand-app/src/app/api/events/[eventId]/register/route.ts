@@ -4,7 +4,7 @@ import { registrations } from "../../../../../components/db/schema";
 import crypto from "crypto";
 import { jwtVerify } from "jose";
 
-const COGNITO_USER_POOL_ID = "us-east-1_xxxxxxxx";
+const COGNITO_USER_POOL_ID = "us-east-1_a0f2b1f49155499da39c0730881d5c76";
 const COGNITO_REGION = "us-east-1";
 const COGNITO_ISSUER = `https://cognito-idp.${COGNITO_REGION}.amazonaws.com/${COGNITO_USER_POOL_ID}`;
 
