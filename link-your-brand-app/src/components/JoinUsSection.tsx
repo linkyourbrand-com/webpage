@@ -10,11 +10,6 @@ export default function JoinUsSection(){
                 Do you have what it takes?
                 <br/>
             </p>
-            <div className='main-section'>
-                <button className='btn btn-primary' type='button' id='apply'>
-                    Apply?
-                </button>
-            </div>
         </div>
     );
 }

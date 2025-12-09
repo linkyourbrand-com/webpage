@@ -20,7 +20,7 @@ export async function GET(request: Request){
 export async function POST(request: Request){
     try{
         const body = await request.json();
-        const location_types = ["in_person", "remote", "hybird"];
+        const location_types = ["in_person", "remote", "hybrid"];
 
         if (!location_types.includes(body.location_type)) {
             return NextResponse.json(
@@ -33,13 +33,13 @@ export async function POST(request: Request){
         .insert(events)
         .values({
             title: body.title,
-            description: body.descrption,
+            description: body.description,
             organizer_cognito_id: body.organizerId,
             rsvp_count: body.attendCount,
             location_type: body.location_type,
             address: body.addy,
-            start_time: body.start,
-            end_time: body.end,
+            start_time: body.start_time,
+            end_time: body.end_time,
             organizer_contact: body.organizer_contact,
             tags: body.eventTags,
         })

@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import jwt from "jsonwebtoken"; // optional if you want to decode it
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -10,8 +9,7 @@ export async function GET() {
     return NextResponse.json({ error: "No ID token found" }, { status: 401 });
   }
 
-  // Optional: decode token to return user info instead of the raw token
-  const decoded = jwt.decode(idToken);
-
-  return NextResponse.json({ idToken, claims:decoded });
+  // For MVP we just return the raw token; client code can treat this
+  // as an opaque identifier or decode it with a library if needed.
+  return NextResponse.json({ idToken });
 }

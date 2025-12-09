@@ -13,6 +13,11 @@ export default function ProfileButton({ isLoggedIn, username }: ProfileButtonPro
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen((v) => !v);
 
+  const handleLogout = async () => {
+    await fetch('/api/auth/session', { method: 'DELETE' });
+    window.location.href = '/';
+  };
+
   return (
     <div className="profile-button-container">
       {isLoggedIn ? (
@@ -25,12 +30,12 @@ export default function ProfileButton({ isLoggedIn, username }: ProfileButtonPro
             <div className="dropdown-menu" role="menu">
               <Link href="/profile" className="dropdown-item">Profile</Link>
               <Link href="/settings" className="dropdown-item">Settings</Link>
-              <Link href="/logout" className="dropdown-item">Logout</Link>
+              <button type="button" onClick={handleLogout} className="dropdown-item">Logout</button>
             </div>
           )}
         </>
       ) : (
-        <Link href="/login-signup" className="login-signup-link">Login / Signup</Link>
+        <Link href="/login" className="login-signup-link">Login / Signup</Link>
       )}
     </div>
   );

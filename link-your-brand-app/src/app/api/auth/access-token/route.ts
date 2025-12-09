@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import jwt from "jsonwebtoken"; // optional if you want to decode it
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -10,8 +9,5 @@ export async function GET() {
     return NextResponse.json({ error: "No access token found" }, { status: 401 });
   }
 
-  // Optional: decode token to return user info instead of the raw token
-  const decoded = jwt.decode(token);
-
-  return NextResponse.json({ token, claims:decoded });
+  return NextResponse.json({ accessToken: token });
 }

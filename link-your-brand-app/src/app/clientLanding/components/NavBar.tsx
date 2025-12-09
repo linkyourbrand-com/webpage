@@ -4,7 +4,6 @@ import { useState } from 'react';
 import ProfileButton from '@/components/ProfileButton';
 import ManageEvntsDropdown from '@/components/userEvents/ManageEvntsDropdown';
 import CreateEventDropdown from '@/components/createEvent/CreateEventDropdown';
-import Link from 'next/link';
 
 
 export default function NavBar(){

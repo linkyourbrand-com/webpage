@@ -1,22 +1,8 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
-import { FormEvent } from 'react';
-import FileUploadForm from '../FileUploadForm';
+import React, { useState, FormEvent } from 'react';
 
 interface MyFormProps {
-  onSubmit: () => void;  // or whatever shape you need
-}
-
-async function getIdToken() {
-  const res = await fetch("/api/auth/id-token", {
-    method: "GET",
-    credentials: "include", // important: sends cookies
-  });
-
-  const data = await res.json();
-  console.log(data);
-  return data;
+    onSubmit: () => void;  // or whatever shape you need
 }
 
 async function createEvent(data:any){
@@ -39,37 +25,46 @@ async function createEvent(data:any){
 export default function CreateEventForm({ onSubmit }: MyFormProps){
     const [email, setEmail] = useState('');
     const [eventname, setEventname] = useState('');
-    const [eventDate, setEventDate] = useState();
-    const [startTime, setStartTime] = useState();
-    const [endTime, setEndTime] = useState();
+    const [eventDate, setEventDate] = useState<string>('');
+    const [startTime, setStartTime] = useState<string>('');
+    const [endTime, setEndTime] = useState<string>('');
     const [des, setDes] = useState('');
     const [virt, setVirtual] = useState(false);
-    const [address, setAddress] = useState();
-    const [numAttend, setNumAttend] = useState();
+    const [address, setAddress] = useState('');
+    const [numAttend, setNumAttend] = useState<number | ''>('');
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        const [uuid, setUuid] = useState(null);
-        setUuid(await getIdToken());
-
         e.preventDefault();
-        onSubmit();
-        var remote:string = "in-person";
-        if(virt === true){
-            remote = "remote";
-        }
 
-        createEvent({
-            title: eventname,
-            description: des,
-            organizerId: uuid,
-            attendCount: 0,
-            location_type: remote,
-            addy: address,
-            start: startTime,
-            end: endTime,
-            organizer_contact: email,
-            eventTags: ["tech", "test"],
-        });
+        try {
+            const organizerId = email || null;
+
+            let locationType: 'in_person' | 'remote' = 'in_person';
+            if (virt) {
+                locationType = 'remote';
+            }
+
+            const startDateTime = eventDate && startTime ? new Date(`${eventDate}T${startTime}:00`) : null;
+            const endDateTime = eventDate && endTime ? new Date(`${eventDate}T${endTime}:00`) : null;
+
+            await createEvent({
+                title: eventname,
+                description: des,
+                organizerId,
+                attendCount: numAttend || 0,
+                location_type: locationType,
+                addy: address,
+                start_time: startDateTime,
+                end_time: endDateTime,
+                organizer_contact: email,
+                eventTags: ["tech", "test"],
+            });
+
+            onSubmit();
+        } catch (err) {
+            console.error('Failed to create event', err);
+            alert('Something went wrong creating the event.');
+        }
     };
 
     return(
@@ -94,7 +89,8 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     type='date' 
                     id='etime' 
                     name='time'
-                    value={eventDate} 
+                    value={eventDate}
+                    onChange={(e) => setEventDate(e.target.value)} 
                     required/>
                     <br/>
 
@@ -104,7 +100,8 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                         type='time' 
                         id='etime' 
                         name='start'
-                        value={startTime} 
+                        value={startTime}
+                        onChange={(e) => setStartTime(e.target.value)} 
                         required/>
                     </div>
                     <div className='col'></div>
@@ -114,7 +111,8 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                         type='time' 
                         id='etime' 
                         name='end'
-                        value={endTime} 
+                        value={endTime}
+                        onChange={(e) => setEndTime(e.target.value)} 
                         required/>
                     </div>
 
@@ -129,6 +127,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     name='description' 
                     className='form-control'
                     value={des}
+                    onChange={(e) => setDes(e.target.value)}
                     />
                 </div>
 
@@ -153,6 +152,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     name='address' 
                     className='form-control' 
                     value={address} 
+                    onChange={(e) => setAddress(e.target.value)}
                     required/>
                 </div>
                 <hr/>
@@ -164,7 +164,8 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     type='number' 
                     id='maxattend' 
                     name='max'
-                    value={numAttend}/>
+                    value={numAttend}
+                    onChange={(e) => setNumAttend(e.target.value === '' ? '' : Number(e.target.value))}/>
                 </div>
 
                 <div className='row text-center'>
@@ -179,20 +180,6 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     onChange={(e) => setEmail(e.target.value)}
                     required/>
                 </div>
-
-                <div className='row text-center'>
-                    <label className='form-label'>Event Tags</label>
-                    <br/>
-                    <input type='hidden' id='etags' name='tags' required/>
-                </div>
-                <br/>
-
-                <div className='row text-center'>
-                    <label className='form-label'>Upload Banner</label>
-                    <FileUploadForm />
-                    <br/>
-                </div>
-                <br/>
 
                 <div className='row'>
                     <button type='submit' className='btn btn-outline-primary'>Create</button>

@@ -1,52 +1,35 @@
 import { NextResponse } from "next/server";
-import { db } from "../../../../../components/db";
-import { registrations } from "../../../../../components/db/schema";
-import crypto from "crypto";
-import { jwtVerify } from "jose";
-
-const COGNITO_USER_POOL_ID = "us-east-1_a0f2b1f49155499da39c0730881d5c76";
-const COGNITO_REGION = "us-east-1";
-const COGNITO_ISSUER = `https://cognito-idp.${COGNITO_REGION}.amazonaws.com/${COGNITO_USER_POOL_ID}`;
-
-async function getPublicKeys() {
-  const res = await fetch(`${COGNITO_ISSUER}/.well-known/jwks.json`);
-  const { keys } = await res.json();
-  return keys;
-}
+import { db } from "@/app/db";
+import { registrations } from "@/app/db/schema";
+import { eq, and } from "drizzle-orm";
 
 export async function POST(req: Request, { params }: { params: { eventId: string } }) {
-  const authHeader = req.headers.get("Authorization");
-  if (!authHeader) return NextResponse.json({ success: false, message: "No auth token" }, { status: 401 });
-
-  const token = authHeader.replace("Bearer ", "");
-
-  let payload;
   try {
-    const JWKS = await getPublicKeys();
-    const key = JWKS[0]; // production: match by 'kid'
-    payload = await jwtVerify(token, key as any, { issuer: COGNITO_ISSUER });
-  } catch (err) {
-    console.error("JWT verification failed", err);
-    return NextResponse.json({ success: false, message: "Invalid token" }, { status: 401 });
-  }
+    const { email } = await req.json();
 
-  const userId = payload.payload.sub;
-  const email = payload.payload.email;
-  const emailHash = crypto.createHash("sha256").update(email).digest("hex");
+    if (!email) {
+      return NextResponse.json({ success: false, message: "Email is required" }, { status: 400 });
+    }
 
-  try {
+    const eventId = Number(params.eventId);
+
+    const existing = await db
+      .select()
+      .from(registrations)
+      .where(and(eq(registrations.event_id, eventId), eq(registrations.attendee_email_hash, email)));
+
+    if (existing.length > 0) {
+      return NextResponse.json({ success: false, message: "You are already registered for this event." }, { status: 409 });
+    }
+
     await db.insert(registrations).values({
-      event_id: params.eventId,
-      attendee_cognito_id: userId,
-      attendee_email_hash: emailHash,
+      event_id: eventId,
+      attendee_email_hash: email,
       status: "registered",
     });
 
-    return NextResponse.json({ success: true, message: "You have successfully registered" });
+    return NextResponse.json({ success: true, message: "You’re registered for this event!" });
   } catch (err: any) {
-    if (err.code === "23505") {
-      return NextResponse.json({ success: false, message: "You are already registered" });
-    }
-    return NextResponse.json({ success: false, message: "An error occurred" });
+    return NextResponse.json({ success: false, message: "An error occurred" }, { status: 500 });
   }
 }

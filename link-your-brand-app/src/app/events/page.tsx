@@ -66,11 +66,6 @@ export default function EventsPage() {
             <button
               onClick={() => (window.location.href = `/events/${event.id}/register`)}
               className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600">Register</button>
-            <p className="text-sm text-gray-500 mb-2">Scan or click to Register</p>
-            <canvas id={event.id} />
-            <button
-              onClick={() => (window.location.href = `/events/${event.id}/register`)}
-              className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600">Register</button>
           </div>
         ))}
       </div>
