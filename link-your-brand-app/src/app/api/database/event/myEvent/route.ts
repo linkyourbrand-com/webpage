@@ -1,6 +1,5 @@
 import { db } from '@/app/db';
 import { events } from '@/app/db/schema';
-import { time } from 'console';
 import { eq, desc } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
@@ -12,7 +11,7 @@ export async function GET(request: Request){
     const event = await db
     .select()
     .from(events)
-    .where(eq(events.organizer_cognito_id, String(eventId)));
+    .where(eq(events.id, Number(eventId)));
 
     return NextResponse.json(event);
 }

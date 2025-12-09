@@ -1,19 +1,26 @@
 import { db } from '@/app/db';
 import { events } from '@/app/db/schema';
-import { time } from 'console';
 import { eq, desc } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request){
     const { searchParams } = new URL(request.url);
     const eventId = searchParams.get('id');
+        if (eventId) {
+                const event = await db
+                    .select()
+                    .from(events)
+                    .where(eq(events.id, Number(eventId)));
 
-    const event = await db
-    .select()
-    .from(events)
-    .where(eq(events.id, Number(eventId)))
+                return NextResponse.json(event);
+        }
 
-    return NextResponse.json(event);
+        const allEvents = await db
+            .select()
+            .from(events)
+            .orderBy(desc(events.created_at));
+
+        return NextResponse.json(allEvents);
 }
 
 
@@ -34,14 +41,15 @@ export async function POST(request: Request){
         .values({
             title: body.title,
             description: body.description,
-            organizer_cognito_id: body.organizerId,
-            rsvp_count: body.attendCount,
+            // Support multiple possible field names from different clients
+            organizer_cognito_id: body.organizer_cognito_id ?? body.organizerId ?? body.organizer_id,
+            rsvp_count: body.rsvp_count ?? body.attendCount,
             location_type: body.location_type,
-            address: body.addy,
+            address: body.address ?? body.addy,
             start_time: body.start_time,
             end_time: body.end_time,
             organizer_contact: body.organizer_contact,
-            tags: body.eventTags,
+            tags: body.tags ?? body.eventTags,
         })
         .returning();
 

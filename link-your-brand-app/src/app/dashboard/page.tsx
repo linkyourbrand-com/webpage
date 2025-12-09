@@ -21,7 +21,7 @@ type Event = {
 async function getIdToken() {
   const res = await fetch("/api/auth/id-token", {
     method: "GET",
-    credentials: "include", // important: sends cookies
+    credentials: "include",
   });
 
   const data = await res.json();

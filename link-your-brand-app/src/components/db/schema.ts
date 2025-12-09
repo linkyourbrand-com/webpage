@@ -2,21 +2,19 @@ import { pgTable,serial,text,integer,timestamp,pgEnum,primaryKey,unique,json,} f
 import { relations } from 'drizzle-orm';
 
 // Enum for location type
-export const locationType = pgEnum('location_type', ['in_person', 'remote', 'hybrid']);
+export const locationType = pgEnum('location_type', ['in_person', 'virtual', 'hybrid']);
 
 export const accountTypes = pgEnum('account_type', ['organizer', 'attendee']);
 
-/**
- * Events table
- * - `organizer_cognito_id` stores the Cognito user identifier string for the organizer.
- */
+
+
 export const events = pgTable('events', {
     id: serial('id').primaryKey(),
     title: text('title').notNull(),
     description: text('description'),
-    organizer_cognito_id: text('organizer_cognito_id'),
+    organizer_id: text('organizer_id'),
     rsvp_count: integer('rsvp_count').default(0),
-    location_type: locationType('location_type').notNull(),
+    location_type: locationType('location_type').default('in_person'),
     address: text('address'),
     start_time: timestamp('start_time'),
     end_time: timestamp('end_time'),
@@ -25,30 +23,22 @@ export const events = pgTable('events', {
     created_at: timestamp('created_at').defaultNow(),
 });
 
-/**
- * Registrations table
- * - Stores a row per RSVP. For privacy store attendee email hash (sha256)
- * - No reference to an internal `users` table; use email hash or Cognito id.
- */
 export const registrations = pgTable(
     'registrations',
     {
         id: serial('id').primaryKey(),
         event_id: integer('event_id').references(() => events.id).notNull(),
-        attendee_cognito_id: text('attendee_cognito_id'),
+        attendee_id: text('attendee_id'),
         attendee_email_hash: text('attendee_email_hash'),
         status: text('status'),
         created_at: timestamp('created_at').defaultNow(),
     },
     (table) => ({
-        // prevent duplicate RSVP by same attendee identifier for an event
         unique_registration: unique('unique_registration').on(table.event_id, table.attendee_email_hash),
     })
 );
 
-/**
- * Tags and event_tags (many-to-many)
- */
+
 export const tags = pgTable('tags', {
     id: serial('id').primaryKey(),
     name: text('name').notNull().unique(),
@@ -65,11 +55,6 @@ export const eventTags = pgTable(
     })
 );
 
-/**
- * DisplaySettings table
- * - Stores flexible display configuration (layout, colors, fonts, etc.)
- * - Using JSON type for flexibility instead of separate columns
- */
 export const displaySettings = pgTable('display_settings', {
     id: text('id').primaryKey(),
     layout: text('layout'),
@@ -96,7 +81,7 @@ export const tagsRelations = relations(tags, ({ many }) => ({
 
 export const userInfo = pgTable('user_info', {
     id: serial("id").primaryKey(),
-    email: text("name").notNull(),
+    email: text("email").notNull(),
     accountType: accountTypes('account_type'),
     location: text("location").notNull(),
 });

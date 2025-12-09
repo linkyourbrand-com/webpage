@@ -2,7 +2,7 @@
 import React, { useState, FormEvent } from 'react';
 
 interface MyFormProps {
-    onSubmit: () => void;  // or whatever shape you need
+    onSubmit: () => void;
 }
 
 async function createEvent(data:any){
@@ -50,15 +50,15 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
             await createEvent({
                 title: eventname,
                 description: des,
-                organizerId,
-                attendCount: numAttend || 0,
+                organizer_id: organizerId,
+                rsvp_count: numAttend || 0,
                 location_type: locationType,
-                addy: address,
-                start_time: startDateTime,
-                end_time: endDateTime,
+                address,
+                start_time: startDateTime?.toISOString(),
+                end_time: endDateTime?.toISOString(),
                 organizer_contact: email,
-                eventTags: ["tech", "test"],
-            });
+                tags: ["tech", "test"]
+                });
 
             onSubmit();
         } catch (err) {
@@ -148,7 +148,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     <input 
                     placeholder='Enter street address or virtual link' 
                     type='text' 
-                    id="addy" 
+                    id="address" 
                     name='address' 
                     className='form-control' 
                     value={address} 
@@ -174,7 +174,7 @@ export default function CreateEventForm({ onSubmit }: MyFormProps){
                     <input 
                     type='email' 
                     id='contact' 
-                    name='organizercontact' 
+                    name='organizer_contact' 
                     value={email}
                     placeholder='test@email.com'
                     onChange={(e) => setEmail(e.target.value)}
